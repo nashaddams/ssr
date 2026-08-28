@@ -1,0 +1,36 @@
+{
+  "tasks": {
+    "bundle": "deno run -A bundle.ts",
+    "dev": {
+      "command": "deno run -A --watch=src/ src/server/mod.tsx",
+      "dependencies": ["bundle"]
+    },
+    "build": {
+      "command": "deno compile -A --include public -o dist/ssr src/server/mod.tsx",
+      "dependencies": ["bundle"]
+    }
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://esm.sh/react@19.0.0?target=es2024",
+    "lib": ["deno.ns", "dom"]
+  },
+  "imports": {
+    "@luca/esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader@0.11.1",
+    "@std/http/file-server": "jsr:@std/http@1.0.12/file-server",
+    "@std/path": "jsr:@std/path@1.0.8",
+    "esbuild": "npm:esbuild@0.24.2",
+    "react": "https://esm.sh/react@19.0.0?target=es2024",
+    "react-dom": "https://esm.sh/react-dom@19.0.0?target=es2024",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?target=es2024",
+    "react-dom/server": "https://esm.sh/react-dom@19.0.0/server?target=es2024",
+    "styled-components": "https://esm.sh/styled-components@6.1.14?target=es2024&external=react"
+  },
+  "lint": {
+    "exclude": ["*/**/*.js"]
+  },
+  "fmt": {
+    "exclude": ["*/**/*.js"]
+  },
+  "lock": false
+}
